@@ -43,15 +43,20 @@ if [[ ${OS} == Ubuntu ]];then
 	apt-get update
 	apt-get install oracle-java8-installer -y
 	apt-get install git git-core curl build-essential openssl libssl-dev wget -y
-	curl -sL https://deb.nodesource.com/setup_9.x -o nodesource_setup.sh
-        bash nodesource_setup.sh
-	apt-get install nodejs -y	
+	git clone https://github.com/nodejs/node.git
+    	chmod -R 755 node
+        	cd node
+	./configure
+	make && make install	
 fi
 if [[ ${OS} == CentOS ]];then
 	yum install update
 	yum install -y gcc-c++ make clur java git wget
-	curl -sL https://rpm.nodesource.com/setup_9.x | sudo -E bash -
-	yum install nodejs -y
+	git clone https://github.com/nodejs/node.git
+    	chmod -R 755 node
+        	cd node
+	./configure
+	make && make install
 fi
 if [[ ${OS} == Debian ]];then
         echo "deb http://ppa.launchpad.net/webupd8team/java/ubuntu trusty main" >> /etc/apt/sources.list
@@ -60,9 +65,11 @@ if [[ ${OS} == Debian ]];then
 	apt-get update
 	apt-get install oracle-java8-installer -y
 	apt-get install git git-core curl build-essential openssl libssl-dev wget -y
-	curl -sL https://deb.nodesource.com/setup_9.x -o nodesource_setup.sh
-        bash nodesource_setup.sh
-	apt-get install nodejs -y	
+	git clone https://github.com/nodejs/node.git
+    	chmod -R 755 node
+        	cd node
+	./configure
+	make && make install	
 fi
 
 #Install MCSManager and MCSManager-Bash
@@ -79,8 +86,8 @@ fi
 
 #Install MCSManager-Bash
 cd
-wget https://raw.githubusercontent.com//Potterli20/linux-script/master/MCSManager-Bash/Mc
-chmod +x Mc
+wget https://raw.githubusercontent.com//Potterli20/linux-script/master/MCSManager-Bash/mc
+chmod +x mc
 
 #INstall Success
 
