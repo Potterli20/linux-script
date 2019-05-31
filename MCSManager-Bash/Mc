@@ -1,0 +1,28 @@
+#!/bin/bash
+export PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+
+#Check Root
+[ $(id -u) != "0" ] && { echo "Error: You must be root to run this script"; exit 1; }
+
+echo "欢迎使用 MCSManager-Bash v0.1"
+
+echo "输入数字选择功能："
+
+echo "1.前台运行MCSManager"
+echo "2.后台运行MCSManager"
+while :; do echo
+	read -p "请选择： " choice
+	if [[ ! $choice =~ ^[1-2]$ ]]; then
+		echo "输入错误! 请输入正确的数字!"
+	else
+		break	
+	fi
+done
+
+if [[ $choice == 1 ]];then
+cd /home/MCSManager && node app.js 
+fi
+
+if [[ $choice == 2 ]];then
+cd /home/MCSManager && nohup node app.js > myLog.log 2>&1 &
+fi
