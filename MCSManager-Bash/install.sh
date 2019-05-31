@@ -79,13 +79,12 @@ fi
 
 #Install MCSManager-Bash
 cd
-wget https://raw.githubusercontent.com/Fcatme/MCSManager-Bash/master/Mc
+wget https://raw.githubusercontent.com//Potterli20/linux-script/master/MCSManager-Bash/Mc
 chmod +x Mc
 
 #INstall Success
-echo 'MCSManager-Bash v0.1'
-echo 'F喵博客地址:https://Fcat.me'
+
 echo '输入 ~/Mc 选择启动方式'
 echo '安装完成！访问地址:http://IP:23333/'
 echo '初始账号:#master 密码:123456 '
-echo 'QQ Group:287215485'
+
