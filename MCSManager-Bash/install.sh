@@ -5,10 +5,11 @@ export PATH
 #=================================================
 #	System Required: CentOS 6/7,Debian 8/9,Ubuntu 16+
 #	Description: MC服务器管理
-#	Version: 1.0
+#	Version: 1.0.1
+#	update:bug repair
 #=================================================
 
-sh_ver="1.0"
+sh_ver="1.0.1"
 github="raw.githubusercontent.com/Potterli20/linux-script/master/MCSManager-Bash"
 
 #更新脚本
@@ -47,7 +48,8 @@ read -p " 请输入数字 [0-1]:" num
 case "$num" in
 	0)
 	Update_Shell
-   	1)
+   	;;
+	1)
 	exit 1
 	;;
 	*)
