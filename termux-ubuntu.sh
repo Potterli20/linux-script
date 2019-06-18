@@ -53,15 +53,15 @@ if [ "$first" != 1 ];then
         cur=`pwd`
         mkdir -p "$folder"
         cd "$folder"
-        echo "decompressing ubuntu image"
+        echo "正在解压ubuntu系统中，请稍等..."
         proot --link2symlink tar -xf ${cur}/${tarball} --exclude='dev'||:
-        echo "fixing nameserver, otherwise it can't connect to the internet"
+        echo "正在修复网络更新"
         echo "nameserver 8.8.8.8" > etc/resolv.conf
         cd "$cur"
 fi
 mkdir -p binds
 bin=start-ubuntu.sh
-echo "writing launch script"
+echo "编写启动脚本"
 cat > $bin <<- EOM
 #!/bin/bash
 cd \$(dirname \$0)
@@ -97,8 +97,8 @@ else
 fi
 EOM
 
-echo "fixing shebang of $bin"
+echo "修复工作 $bin"
 termux-fix-shebang $bin
-echo "making $bin executable"
+echo "正在写 $bin executable"
 chmod +x $bin
-echo "You can now launch Ubuntu with the ./${bin} script"
+echo "你现在可以用命令./${bin} 脚本"
