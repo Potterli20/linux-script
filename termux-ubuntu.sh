@@ -59,46 +59,16 @@ if [ "$first" != 1 ];then
         echo "nameserver 8.8.8.8" > etc/resolv.conf
         cd "$cur"
 fi
-mkdir -p binds
-bin=start-ubuntu.sh
-echo "编写启动脚本"
-cat > $bin <<- EOM
-#!/bin/bash
-cd \$(dirname \$0)
-## unset LD_PRELOAD in case termux-exec is installed
-unset LD_PRELOAD
-command="proot"
-command+=" --link2symlink"
-command+=" -0"
-command+=" -r $folder"
-if [ -n "\$(ls -A binds)" ]; then
-    for f in binds/* ;do
-      . \$f
-    done
-fi
-command+=" -b /dev"
-command+=" -b /proc"
-## uncomment the following line to have access to the home directory of termux
-#command+=" -b /data/data/com.termux/files/home:/root"
-## uncomment the following line to mount /sdcard directly to /
-#command+=" -b /sdcard"
-command+=" -w /root"
-command+=" /usr/bin/env -i"
-command+=" HOME=/root"
-command+=" PATH=/usr/local/sbin:/usr/local/bin:/bin:/usr/bin:/sbin:/usr/sbin:/usr/games:/usr/local/games"
-command+=" TERM=\$TERM"
-command+=" LANG=C.UTF-8"
-command+=" /bin/bash --login"
-com="\$@"
-if [ -z "\$1" ];then
-    exec \$command
-else
-    \$command -c "\$com"
-fi
+
+# make a shortcut
+
+cat > /data/data/com.termux/files/usr/bin/startubuntu <<- EOM
+#!/data/data/com.termux/files/usr/bin/bash
+unset LD_PRELOAD && proot --link2symlink -0 -r ~/ubuntu -b /dev/ -b /sys/ -b /proc/ -b /storage/ -b $HOME -w $HOME /bin/env -i HOME=/root TERM="$TERM" PS1='[termux@ubuntu \W]\$ ' LANG=$LANG PATH=/bin:/usr/bin:/sbin:/usr/sbin /bin/bash --login
 EOM
 
-echo "修复工作 $bin"
-termux-fix-shebang $bin
-echo "正在写 $bin executable"
-chmod +x $bin
-echo "你现在可以用命令./${bin} 脚本"
+chmod +x /data/data/com.termux/files/usr/bin/startubuntu
+
+# all done
+
+echo "全部完成!以“startubumtu”启动ubumtu。获得定期'apt-get update && apt-get upgrade && apt-get diat-upgrade'的更新。 "
