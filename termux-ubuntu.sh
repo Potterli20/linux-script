@@ -48,33 +48,62 @@ if [ "$first" != 1 ];then
                 *)
                         echo "unknown architecture"; exit 1 ;;
                 esac
-                wget "https://partner-images.canonical.com/core/eoan/current/ubuntu-eoan-core-cloudimg-${archurl}-root.tar.gz" -O $tarball
+                wget "https://mirrors.tuna.tsinghua.edu.cn/ubuntu-cloud-images/eoan/current/eoan-server-cloudimg-${archurl}-root.tar.xz" -O $tarball
         fi
         cur=`pwd`
         mkdir -p "$folder"
         cd "$folder"
-        echo "正在解压ubuntu系统中，请稍等..."
+        echo "decompressing ubuntu image"
         proot --link2symlink tar -xf ${cur}/${tarball} --exclude='dev'||:
-        echo "正在修复网络更新"
-        echo "nameserver 8.8.8.8" > etc/resolv.conf
+        echo "正在修复系统网络"
+       echo 
+       "
+        nameserver 8.8.8.8
+        nameserver 8.8.4.4
+        " > ${root}/etc/resolv.conf
         cd "$cur"
 fi
 mkdir -p binds
-# make a shortcut
-
-cat > /data/data/com.termux/files/usr/bin/startubuntu <<- EOM
-#!/data/data/com.termux/files/usr/bin/bash
-unset LD_PRELOAD && proot --link2symlink -0 -r $folder
+bin=start-ubuntu.sh
+echo "编写脚本"
+cat > $bin <<- EOM
+#!/bin/bash
+cd \$(dirname \$0)
+## unset LD_PRELOAD in case termux-exec is installed
+unset LD_PRELOAD
+command="proot"
+command+=" --link2symlink"
+command+=" -0"
+command+=" -r $folder"
 if [ -n "\$(ls -A binds)" ]; then
     for f in binds/* ;do
       . \$f
     done
 fi
--b /dev/ -b /sys/ -b /proc/ -b /storage/ -b $HOME -w $HOME /bin/env -i HOME=/root TERM="$TERM" PS1='termux@ubuntu \W\$ ' LANG=$LANG PATH=/usr/local/sbin:/usr/local/bin:/bin:/usr/bin:/sbin:/usr/sbin:/usr/games:/usr/local/games" /bin/bash --login
+command+=" -b /dev"
+command+=" -b /proc"
+## uncomment the following line to have access to the home directory of termux
+#command+=" -b /data/data/com.termux/files/home:/root"
+## uncomment the following line to mount /sdcard directly to /
+#command+=" -b /sdcard"
+command+=" -w /root"
+command+=" /usr/bin/env -i"
+command+=" HOME=/root"
+command+=" PATH=/usr/local/sbin:/usr/local/bin:/bin:/usr/bin:/sbin:/usr/sbin:/usr/games:/usr/local/games"
+command+=" TERM=\$TERM"
+command+=" LANG=C.UTF-8"
+command+=" /bin/bash --login"
+com="\$@"
+if [ -z "\$1" ];then
+    exec \$command
+else
+    \$command -c "\$com"
+fi
 EOM
 
-chmod +x /data/data/com.termux/files/usr/bin/startubuntu
+echo "正在安装工作中 $bin"
+termux-fix-shebang $bin
+echo "正在进行中 $bin executable"
+chmod +x $bin
 
-# all done
-
-echo "全部完成!以“startubumtu”启动ubumtu。获得定期'apt-get update && apt-get upgrade && apt-get diat-upgrade'的更新。 "
+echo  “全部完成！以"./${bin}"脚本启动ubuntu。获得定期'apt-get update && apt-get upgrade && apt-get diat-upgrade'的更新。”
