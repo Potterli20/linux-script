@@ -46,7 +46,11 @@ if [ "$first" != 1 ];then
         mkdir -p "$folder"
         cd "$folder"
         echo "正在解压fedore镜像"
-        proot --link2symlink tar -xf ${cur}/${tarball} --exclude='dev'||:
+        tar xvf fedora.tar.xz --strip-components=1 --exclude json --exclude VERSION
+        tar xpf layer.tar
+        chmod +w .
+        rm layer.tar
+        rm fedora.tar.xz
         echo "正在修复系统网络"
         echo "nameserver 8.8.8.8" > etc/resolv.conf
         cd "$cur"
