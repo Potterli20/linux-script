@@ -25,76 +25,40 @@ requirements=""
 			pkg install libcurl -y
 	fi
 
-folder=ubuntu-ports
+folder=fedora-ports
 if [ -d "$folder" ]; then
         first=1
         echo "跳过已经下载"
 fi
-tarball="ubuntu.tar.gz"
+tarball="fedora.tar.xz"
 if [ "$first" != 1 ];then
         if [ ! -f $tarball ]; then
-                echo "正在下载ubuntu"
+                echo "正在下载fedore"
                 case `dpkg --print-architecture` in
                 aarch64)
                         archurl="arm64" ;;
-                arm)
-                        archurl="armhf" ;;
-                amd64)
-                        archurl="amd64" ;;
-                i*86)
-                        archurl="i386" ;;
-                x86_64)
-                        archurl="amd64" ;;
                 *)
                         echo "unknown architecture"; exit 1 ;;
                 esac
-                wget "https://partner-images.canonical.com/core/eoan/current/ubuntu-eoan-core-cloudimg-${archurl}-root.tar.gz" -O $tarball
+                wget "https://download.fedoraproject.org/pub/fedora/linux/releases/30/Container/aarch64/images/Fedora-Container-Base-30-1.2.aarch64.tar.xz" -O $tarball
         fi
         cur=`pwd`
         mkdir -p "$folder"
         cd "$folder"
-        echo "正在解压ubuntu镜像"
+        echo "正在解压fedore镜像"
         proot --link2symlink tar -xf ${cur}/${tarball} --exclude='dev'||:
         echo "正在修复系统网络"
         echo "nameserver 8.8.8.8" > etc/resolv.conf
         cd "$cur"
 fi
 mkdir -p binds
-bin=start-ubuntu.sh
+bin=start-fedore.sh
 echo "编写脚本"
 cat > $bin <<- EOM
 #!/bin/bash
 cd \$(dirname \$0)
 ## unset LD_PRELOAD in case termux-exec is installed
-unset LD_PRELOAD
-command="proot"
-command+=" --link2symlink"
-command+=" -0"
-command+=" -r $folder"
-if [ -n "\$(ls -A binds)" ]; then
-    for f in binds/* ;do
-      . \$f
-    done
-fi
-command+=" -b /dev"
-command+=" -b /proc"
-## uncomment the following line to have access to the home directory of termux
-#command+=" -b /data/data/com.termux/files/home:/root"
-## uncomment the following line to mount /sdcard directly to /
-#command+=" -b /sdcard"
-command+=" -w /root"
-command+=" /usr/bin/env -i"
-command+=" HOME=/root"
-command+=" PATH=/usr/local/sbin:/usr/local/bin:/bin:/usr/bin:/sbin:/usr/sbin:/usr/games:/usr/local/games"
-command+=" TERM=\$TERM"
-command+=" LANG=C.UTF-8"
-command+=" /bin/bash --login"
-com="\$@"
-if [ -z "\$1" ];then
-    exec \$command
-else
-    \$command -c "\$com"
-fi
+unset LD_PRELOAD && proot --link2symlink -0 -r ~/fedora -b /dev/ -b /sys/ -b /proc/ -b /storage/ -b $HOME -w $HOME /bin/env -i HOME=/root TERM="$TERM" PS1='[termux@fedora \W]\$ ' LANG=$LANG PATH=/bin:/usr/bin:/sbin:/usr/sbin /bin/bash --login
 EOM
 
 echo "正在安装工作中 $bin"
@@ -102,4 +66,4 @@ termux-fix-shebang $bin
 echo "正在进行中 $bin executable"
 chmod +x $bin
 
-echo  “全部完成！以"./${bin}"脚本启动ubuntu。获得定期'apt-get update && apt-get upgrade && apt-get diat-upgrade'的更新。”
+echo  “全部完成！以"./${bin}"脚本启动fedore。获得定期'dnf update && dnf upgrade'的更新。”
