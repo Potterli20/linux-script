@@ -59,12 +59,18 @@ if [ "$first" != 1 ];then
         echo "nameserver 8.8.8.8" > etc/resolv.conf
         cd "$cur"
 fi
-
+mkdir -p binds
 # make a shortcut
 
 cat > /data/data/com.termux/files/usr/bin/startubuntu <<- EOM
 #!/data/data/com.termux/files/usr/bin/bash
-unset LD_PRELOAD && proot --link2symlink -0 -r ~/ubuntu -b /dev/ -b /sys/ -b /proc/ -b /storage/ -b $HOME -w $HOME /bin/env -i HOME=/root TERM="$TERM" PS1='[termux@ubuntu \W]\$ ' LANG=$LANG PATH=/bin:/usr/bin:/sbin:/usr/sbin /bin/bash --login
+unset LD_PRELOAD && proot --link2symlink -0 -r $folder
+if [ -n "\$(ls -A binds)" ]; then
+    for f in binds/* ;do
+      . \$f
+    done
+fi
+-b /dev/ -b /sys/ -b /proc/ -b /storage/ -b $HOME -w $HOME /bin/env -i HOME=/root TERM="$TERM" PS1='termux@ubuntu \W\$ ' LANG=$LANG PATH=/usr/local/sbin:/usr/local/bin:/bin:/usr/bin:/sbin:/usr/sbin:/usr/games:/usr/local/games" /bin/bash --login
 EOM
 
 chmod +x /data/data/com.termux/files/usr/bin/startubuntu
