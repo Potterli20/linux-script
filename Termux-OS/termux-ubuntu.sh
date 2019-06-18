@@ -60,9 +60,9 @@ if [ "$first" != 1 ];then
         cd "$cur"
 fi
 mkdir -p binds
-bin=start-ubuntu.sh
+bin=startubuntu
 echo "编写脚本"
-cat > $bin <<- EOM
+cat >  /data/data/com.termux/files/usr/$bin <<- EOM
 #!/bin/bash
 cd \$(dirname \$0)
 ## unset LD_PRELOAD in case termux-exec is installed
@@ -99,7 +99,7 @@ EOM
 
 echo "正在安装工作中 $bin"
 termux-fix-shebang $bin
-echo "正在进行中 $bin executable"
+echo "正在进行中 $bin"
 chmod +x $bin
 
-echo  “全部完成！以"./${bin}"脚本启动ubuntu。获得定期'apt-get update && apt-get upgrade && apt-get diat-upgrade'的更新。”
+echo  “全部完成！以"${bin}"脚本启动ubuntu。获得定期'apt-get update && apt-get upgrade && apt-get diat-upgrade'的更新。”
