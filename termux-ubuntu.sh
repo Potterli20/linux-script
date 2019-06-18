@@ -53,14 +53,14 @@ if [ "$first" != 1 ];then
         cur=`pwd`
         mkdir -p "$folder"
         cd "$folder"
-        echo "decompressing ubuntu image"
+        echo "正在解压ubuntu镜像"
         proot --link2symlink tar -xf ${cur}/${tarball} --exclude='dev'||:
         echo "正在修复系统网络"
        echo 
        "
         nameserver 8.8.8.8
         nameserver 8.8.4.4
-        " > ${root}/etc/resolv.conf
+        " > etc/resolv.conf
         cd "$cur"
 fi
 mkdir -p binds
