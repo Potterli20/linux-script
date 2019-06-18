@@ -48,7 +48,7 @@ if [ "$first" != 1 ];then
                 *)
                         echo "unknown architecture"; exit 1 ;;
                 esac
-                wget "https://mirrors.tuna.tsinghua.edu.cn/ubuntu-cloud-images/disco/current/disco-server-cloudimg-${archurl}-root.tar.xz" -O $tarball
+                wget "http://cloud-images.ubuntu.com/daily/server/server/daily/server/eoan/current/eoan-server-cloudimg-${archurl}-root.tar.xz" -O $tarball
         fi
         cur=`pwd`
         mkdir -p "$folder"
@@ -56,7 +56,6 @@ if [ "$first" != 1 ];then
         echo "decompressing ubuntu image"
         proot --link2symlink tar -xf ${cur}/${tarball} --exclude='dev'||:
         echo "fixing nameserver, otherwise it can't connect to the internet"
-        echo "nameserver 1.1.1.1" > etc/resolv.conf
         cd "$cur"
 fi
 mkdir -p binds
