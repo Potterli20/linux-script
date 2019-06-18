@@ -48,7 +48,7 @@ if [ "$first" != 1 ];then
                 *)
                         echo "unknown architecture"; exit 1 ;;
                 esac
-                wget "http://cloud-images.ubuntu.com/daily/server/server/daily/server/eoan/current/eoan-server-cloudimg-${archurl}-root.tar.xz" -O $tarball
+                wget "https://partner-images.canonical.com/core/disco/current/ubuntu-eoan-core-cloudimg-${archurl}-root.tar.gz" -O $tarball
         fi
         cur=`pwd`
         mkdir -p "$folder"
