@@ -25,7 +25,7 @@ requirements=""
 			pkg install libcurl -y
 	fi
 
-folder=ubuntu-fs
+folder=ubuntu-ports
 if [ -d "$folder" ]; then
         first=1
         echo "skipping downloading"
@@ -56,11 +56,7 @@ if [ "$first" != 1 ];then
         echo "正在解压ubuntu镜像"
         proot --link2symlink tar -xf ${cur}/${tarball} --exclude='dev'||:
         echo "正在修复系统网络"
-       echo 
-       "
-        nameserver 8.8.8.8
-        nameserver 8.8.4.4
-        " > etc/resolv.conf
+        echo "nameserver 8.8.8.8" > etc/resolv.conf
         cd "$cur"
 fi
 mkdir -p binds
