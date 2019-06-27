@@ -104,7 +104,7 @@ Download(){
 }
 Service(){
 	if [[ ${release} = "centos" ]]; then
-		if ! wget --no-check-certificate "https://raw.githubusercontent.com/ToyoDAdoubi/doubi/master/service/ss_go_centos" -O /etc/init.d/ss-go; then
+		if ! wget --no-check-certificate "https://raw.githubusercontent.com/Potterli20/linux-script/master/vpn/service/ss_go_centos" -O /etc/init.d/ss-go; then
 			echo -e "${Error} Shadowsocks 服务管理脚本下载失败 !"
 			rm -rf "${FOLDER}"
 			exit 1
@@ -113,7 +113,7 @@ Service(){
 		chkconfig --add ss-go
 		chkconfig ss-go on
 	else
-		if ! wget --no-check-certificate "https://raw.githubusercontent.com/ToyoDAdoubi/doubi/master/service/ss_go_debian" -O /etc/init.d/ss-go; then
+		if ! wget --no-check-certificate "https://raw.githubusercontent.com/Potterli20/linux-script/master/vpn/service/ss_go_debian" -O /etc/init.d/ss-go; then
 			echo -e "${Error} Shadowsocks 服务管理脚本下载失败 !"
 			rm -rf "${FOLDER}"
 			exit 1
