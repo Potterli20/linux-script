@@ -6,7 +6,7 @@ export PATH
 #	System Required: CentOS 6+/Debian 6+/Ubuntu 14.04+
 #	Description: Install the ShadowsocksR server
 #=================================================
-sh_ver="1.0.2bate"
+sh_ver="1.0.3bate"
 filepath=$(cd "$(dirname "$0")"; pwd)
 file=$(echo -e "${filepath}"|awk -F "$0" '{print $1}')
 ssr_folder="/usr/local/shadowsocksr"
@@ -1165,19 +1165,13 @@ Other_functions(){
 	read -e -p "(默认: 取消):" other_num
 	[[ -z "${other_num}" ]] && echo "已取消..." && exit 1
 	if [[ ${other_num} == "1" ]]; then
-		Configure_BBR
-	elif [[ ${other_num} == "2" ]]; then
-		Configure_Server_Speeder
-	elif [[ ${other_num} == "3" ]]; then
-		Configure_LotServer
-	elif [[ ${other_num} == "4" ]]; then
 		BanBTPTSPAM
-	elif [[ ${other_num} == "5" ]]; then
+	elif [[ ${other_num} == "2" ]]; then
 		UnBanBTPTSPAM
-	elif [[ ${other_num} == "6" ]]; then
-		Set_config_connect_verbose_info
+	elif [[ ${other_num} == "3" ]]; then
+		Set_config_connect_verbose_info	
 	else
-		echo -e "${Error} 请输入正确的数字 [1-6]" && exit 1
+		echo -e "${Error} 请输入正确的数字 [1-3]" && exit 1
 	fi
 }
 # 封禁 BT PT SPAM
@@ -1190,6 +1184,7 @@ UnBanBTPTSPAM(){
 	wget -N --no-check-certificate https://raw.githubusercontent.com/Potterli20/linux-script/master/vpn/service/ban_iptables.sh && chmod +x ban_iptables.sh && bash ban_iptables.sh unbanall
 	rm -rf ban_iptables.sh
 }
+#切换 ShadowsocksR日志输出模式
 Set_config_connect_verbose_info(){
 	SSR_installation_status
 	Get_User
