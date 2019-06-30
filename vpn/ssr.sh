@@ -6,6 +6,7 @@ export PATH
 #	System Required: CentOS 6+/Debian 6+/Ubuntu 14.04+
 #	Description: Install the ShadowsocksR server
 #=================================================
+sh_ver="1.0.bate"
 filepath=$(cd "$(dirname "$0")"; pwd)
 file=$(echo -e "${filepath}"|awk -F "$0" '{print $1}')
 ssr_folder="/usr/local/shadowsocksr"
@@ -1225,7 +1226,7 @@ Update_Shell(){
 		rm -rf /etc/init.d/ssr
 		Service_SSR
 	fi
-	wget -N --no-check-certificate "https://raw.githubusercontent.com/" && chmod +x ssr.sh
+	wget -N --no-check-certificate "https://raw.githubusercontent.com/Potterli20/linux-script/master/vpn/ssr.sh" && chmod +x ssr.sh
 	echo -e "脚本已更新为最新版本[ ${sh_new_ver} ] !(注意：因为更新方式为直接覆盖当前运行的脚本，所以可能下面会提示一些报错，无视即可)" && exit 0
 }
 # 显示 菜单状态
