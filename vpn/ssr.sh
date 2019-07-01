@@ -5,8 +5,9 @@ export PATH
 #=================================================
 #	System Required: CentOS 6+/Debian 6+/Ubuntu 14.04+
 #	Description: Install the ShadowsocksR server
+#	Version: 1.0.6
 #=================================================
-sh_ver="1.0.5"
+sh_ver="1.0.6"
 filepath=$(cd "$(dirname "$0")"; pwd)
 file=$(echo -e "${filepath}"|awk -F "$0" '{print $1}')
 ssr_folder="/usr/local/shadowsocksr"
@@ -732,24 +733,26 @@ Install_Libsodium(){
 		echo -e "${Info} 安装依赖..."
 		yum -y groupinstall "Development Tools"
 		echo -e "${Info} 下载..."
-		wget  --no-check-certificate -N "https://github.com/jedisct1/libsodium/releases/download/${Libsodiumr_ver}/libsodium-${Libsodiumr_ver}.tar.gz"
+		wget  --no-check-certificate -N "https://download.libsodiumr.org/libsodium/releases-${Libsodiumr_ver}-stable.tar.gz"
 		echo -e "${Info} 解压..."
-		tar -xzf libsodium-${Libsodiumr_ver}.tar.gz && cd libsodium-${Libsodiumr_ver}
+		tar -xzf libsodium-${Libsodiumr_ver}-stable.tar.gz && cd libsodium-${Libsodiumr_ver}-stable
 		echo -e "${Info} 编译安装..."
-		./configure
-		make && make install
+		./configure --prefix=/usr
+		make && make check
+		make install
 		echo /usr/local/lib > /etc/ld.so.conf.d/usr_local_lib.conf
 	else
 		apt-get update
 		echo -e "${Info} 安装依赖..."
 		apt-get install -y build-essential
 		echo -e "${Info} 下载..."
-		wget  --no-check-certificate -N "https://github.com/jedisct1/libsodium/releases/download/${Libsodiumr_ver}/libsodium-${Libsodiumr_ver}.tar.gz"
+				wget  --no-check-certificate -N "https://download.libsodiumr.org/libsodium/releases-${Libsodiumr_ver}-stable.tar.gz"
 		echo -e "${Info} 解压..."
-		tar -xzf libsodium-${Libsodiumr_ver}.tar.gz && cd libsodium-${Libsodiumr_ver}
+		tar -xzf libsodium-${Libsodiumr_ver}-stable.tar.gz && cd libsodium-${Libsodiumr_ver}-stable
 		echo -e "${Info} 编译安装..."
-		./configure
-		make && make install
+		./configure --prefix=/usr
+		make && make check
+		make install
 	fi
 	ldconfig
 	cd .. && rm -rf libsodium-${Libsodiumr_ver}.tar.gz && rm -rf libsodium-${Libsodiumr_ver}
