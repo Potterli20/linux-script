@@ -5,9 +5,9 @@ export PATH
 #=================================================
 #	System Required: CentOS 6+/Debian 6+/Ubuntu 14.04+
 #	Description: Install the ShadowsocksR server
-#	Version: 1.0.7
+#	Version: 1.0.8
 #=================================================
-sh_ver="1.0.7"
+sh_ver="1.0.8"
 filepath=$(cd "$(dirname "$0")"; pwd)
 file=$(echo -e "${filepath}"|awk -F "$0" '{print $1}')
 ssr_folder="/usr/local/shadowsocksr"
@@ -721,14 +721,15 @@ Install_Libsodium(){
 	else
 		echo -e "${Info} libsodium 未安装，开始安装..."
 	fi
+
 	if [[ ${release} == "centos" ]]; then
 		yum update
 		echo -e "${Info} 安装依赖..."
 		yum -y groupinstall "Development Tools"
 		echo -e "${Info} 下载..."
-		wget https://download.libsodium.org/libsodium/releases/libsodium-${Libsodiumr_ver}-stable.tar.gz
+		wget https://download.libsodium.org/libsodium/releases/libsodium-1.0.18-stable.tar.gz
 		echo -e "${Info} 解压..."
-		tar -xzf libsodium-${Libsodiumr_ver}-stable.tar.gz && cd libsodium-${Libsodiumr_ver}-stable
+		tar -xzf libsodium-1.0.18-stable.tar.gz && cd libsodium-stable
 		echo -e "${Info} 编译安装..."
 		./configure --disable-maintainer-mode && make -j2 && make install
 		echo /usr/local/lib > /etc/ld.so.conf.d/usr_local_lib.conf
@@ -737,14 +738,14 @@ Install_Libsodium(){
 		echo -e "${Info} 安装依赖..."
 		apt-get install -y build-essential
 		echo -e "${Info} 下载..."
-		wget https://download.libsodium.org/libsodium/releases/libsodium-${Libsodiumr_ver}-stable.tar.gz
+		wget https://download.libsodium.org/libsodium/releases/libsodium-1.0.18-stable.tar.gz
 		echo -e "${Info} 解压..."
-		tar -xzf libsodium-${Libsodiumr_ver}-stable.tar.gz && cd libsodium-${Libsodiumr_ver}-stable
+		tar -xzf libsodium-1.0.18-stable.tar.gz && cd libsodium-stable
 		echo -e "${Info} 编译安装..."
 		./configure --disable-maintainer-mode && make -j2 && make install
 	fi
 	ldconfig
-	cd .. && rm -rf libsodium-${Libsodiumr_ver}.tar.gz && rm -rf libsodium-${Libsodiumr_ver}
+	cd .. && rm -rf libsodium-1.0.18-stable.tar.gz && rm -rf libsodium-stable
 	[[ ! -e ${Libsodiumr_file} ]] && echo -e "${Error} libsodium 安装失败 !" && exit 1
 	echo && echo -e "${Info} libsodium 安装成功 !" && echo
 }
