@@ -184,7 +184,6 @@ View_User(){
 		echo -e "${ss_link}"
 		echo -e "${ssr_link}"
 		echo -e " ${Green_font_prefix} 提示: ${Font_color_suffix}
- 在浏览器中，打开二维码链接，就可以看到二维码图片。
  协议和混淆后面的[ _compatible ]，指的是 兼容原版协议/混淆。"
 		echo && echo "==================================================="
 	else
