@@ -5,10 +5,10 @@ export PATH
 #=================================================
 #	System Required: CentOS 6+/Debian 6+/Ubuntu 14.04+
 #	Description: Install the ShadowsocksR server
-#	Version: 1.1.1
+#	Version: 1.1.2
 #=================================================
 
-sh_ver="1.1.1"
+sh_ver="1.1.2"
 filepath=$(cd "$(dirname "$0")"; pwd)
 file=$(echo -e "${filepath}"|awk -F "$0" '{print $1}')
 ssr_folder="/usr/local/shadowsocksr"
@@ -961,16 +961,16 @@ Uninstall_SSR(){
 			done
 			Save_iptables
 		fi
-		if [[ ! -z $(crontab -l | grep "ssrmu.sh") ]]; then
+		if [[ ! -z $(crontab -l | grep "ssr.sh") ]]; then
 			crontab_monitor_ssr_cron_stop
 			Clear_transfer_all_cron_stop
 		fi
 		if [[ ${release} = "centos" ]]; then
-			chkconfig --del ssrmu
+			chkconfig --del ssr
 		else
-			update-rc.d -f ssrmu remove
+			update-rc.d -f ssr remove
 		fi
-		rm -rf ${ssr_folder} && rm -rf /etc/init.d/ssrmu
+		rm -rf ${ssr_folder} && rm -rf /etc/init.d/ssr
 		echo && echo " ShadowsocksR 卸载完成 !" && echo
 	else
 		echo && echo " 卸载已取消..." && echo
@@ -1373,11 +1373,11 @@ Clear_transfer_all(){
 }
 Clear_transfer_all_cron_start(){
 	crontab -l > "$file/crontab.bak"
-	sed -i "/ssrmu.sh/d" "$file/crontab.bak"
-	echo -e "\n${Crontab_time} /bin/bash $file/ssrmu.sh clearall" >> "$file/crontab.bak"
+	sed -i "/ssr.sh/d" "$file/crontab.bak"
+	echo -e "\n${Crontab_time} /bin/bash $file/ssr.sh clearall" >> "$file/crontab.bak"
 	crontab "$file/crontab.bak"
 	rm -r "$file/crontab.bak"
-	cron_config=$(crontab -l | grep "ssrmu.sh")
+	cron_config=$(crontab -l | grep "ssr.sh")
 	if [[ -z ${cron_config} ]]; then
 		echo -e "${Error} 定时所有用户流量清零启动失败 !" && exit 1
 	else
@@ -1386,10 +1386,10 @@ Clear_transfer_all_cron_start(){
 }
 Clear_transfer_all_cron_stop(){
 	crontab -l > "$file/crontab.bak"
-	sed -i "/ssrmu.sh/d" "$file/crontab.bak"
+	sed -i "/ssr.sh/d" "$file/crontab.bak"
 	crontab "$file/crontab.bak"
 	rm -r "$file/crontab.bak"
-	cron_config=$(crontab -l | grep "ssrmu.sh")
+	cron_config=$(crontab -l | grep "ssr.sh")
 	if [[ ! -z ${cron_config} ]]; then
 		echo -e "${Error} 定时所有用户流量清零停止失败 !" && exit 1
 	else
@@ -1417,19 +1417,19 @@ Start_SSR(){
 	SSR_installation_status
 	check_pid
 	[[ ! -z ${PID} ]] && echo -e "${Error} ShadowsocksR 正在运行 !" && exit 1
-	/etc/init.d/ssrmu start
+	/etc/init.d/ssr start
 }
 Stop_SSR(){
 	SSR_installation_status
 	check_pid
 	[[ -z ${PID} ]] && echo -e "${Error} ShadowsocksR 未运行 !" && exit 1
-	/etc/init.d/ssrmu stop
+	/etc/init.d/ssr stop
 }
 Restart_SSR(){
 	SSR_installation_status
 	check_pid
-	[[ ! -z ${PID} ]] && /etc/init.d/ssrmu stop
-	/etc/init.d/ssrmu start
+	[[ ! -z ${PID} ]] && /etc/init.d/ssr stop
+	/etc/init.d/ssr start
 }
 View_Log(){
 	SSR_installation_status
@@ -1510,7 +1510,7 @@ Set_config_connect_verbose_info(){
 }
 Set_crontab_monitor_ssr(){
 	SSR_installation_status
-	crontab_monitor_ssr_status=$(crontab -l|grep "ssrmu.sh monitor")
+	crontab_monitor_ssr_status=$(crontab -l|grep "ssr.sh monitor")
 	if [[ -z "${crontab_monitor_ssr_status}" ]]; then
 		echo && echo -e "当前监控模式: ${Green_font_prefix}未开启${Font_color_suffix}" && echo
 		echo -e "确定要开启为 ${Green_font_prefix}ShadowsocksR服务端运行状态监控${Font_color_suffix} 功能吗？(当进程关闭则自动启动SSR服务端)[Y/n]"
@@ -1538,7 +1538,7 @@ crontab_monitor_ssr(){
 	check_pid
 	if [[ -z ${PID} ]]; then
 		echo -e "${Error} [$(date "+%Y-%m-%d %H:%M:%S %u %Z")] 检测到 ShadowsocksR服务端 未运行 , 开始启动..." | tee -a ${ssr_log_file}
-		/etc/init.d/ssrmu start
+		/etc/init.d/ssr start
 		sleep 1s
 		check_pid
 		if [[ -z ${PID} ]]; then
@@ -1552,11 +1552,11 @@ crontab_monitor_ssr(){
 }
 crontab_monitor_ssr_cron_start(){
 	crontab -l > "$file/crontab.bak"
-	sed -i "/ssrmu.sh monitor/d" "$file/crontab.bak"
-	echo -e "\n* * * * * /bin/bash $file/ssrmu.sh monitor" >> "$file/crontab.bak"
+	sed -i "/ssr.sh monitor/d" "$file/crontab.bak"
+	echo -e "\n* * * * * /bin/bash $file/ssr.sh monitor" >> "$file/crontab.bak"
 	crontab "$file/crontab.bak"
 	rm -r "$file/crontab.bak"
-	cron_config=$(crontab -l | grep "ssrmu.sh monitor")
+	cron_config=$(crontab -l | grep "ssr.sh monitor")
 	if [[ -z ${cron_config} ]]; then
 		echo -e "${Error} ShadowsocksR服务端运行状态监控功能 启动失败 !" && exit 1
 	else
@@ -1565,10 +1565,10 @@ crontab_monitor_ssr_cron_start(){
 }
 crontab_monitor_ssr_cron_stop(){
 	crontab -l > "$file/crontab.bak"
-	sed -i "/ssrmu.sh monitor/d" "$file/crontab.bak"
+	sed -i "/ssr.sh monitor/d" "$file/crontab.bak"
 	crontab "$file/crontab.bak"
 	rm -r "$file/crontab.bak"
-	cron_config=$(crontab -l | grep "ssrmu.sh monitor")
+	cron_config=$(crontab -l | grep "ssr.sh monitor")
 	if [[ ! -z ${cron_config} ]]; then
 		echo -e "${Error} ShadowsocksR服务端运行状态监控功能 停止失败 !" && exit 1
 	else
@@ -1578,8 +1578,8 @@ crontab_monitor_ssr_cron_stop(){
 Update_Shell(){
 	sh_new_ver=$(wget --no-check-certificate -qO- -t1 -T3 "https://raw.githubusercontent.com/Potterli20/linux-script/master/vpn/ssr.sh"|grep 'sh_ver="'|awk -F "=" '{print $NF}'|sed 's/\"//g'|head -1) && sh_new_type="github"
 	[[ -z ${sh_new_ver} ]] && echo -e "${Error} 无法链接到 Github !" && exit 0
-	if [[ -e "/etc/init.d/ssrmu" ]]; then
-		rm -rf /etc/init.d/ssrmu
+	if [[ -e "/etc/init.d/ssr" ]]; then
+		rm -rf /etc/init.d/ssr
 		Service_SSR
 	fi
 	cd "${file}"
