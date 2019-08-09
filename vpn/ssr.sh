@@ -5,10 +5,10 @@ export PATH
 #=================================================
 #	System Required: CentOS 6+/Debian 6+/Ubuntu 14.04+
 #	Description: Install the ShadowsocksR server
-#	Version: 1.1.0
+#	Version: 1.1.1
 #=================================================
 
-sh_ver="1.1.0"
+sh_ver="1.1.1"
 filepath=$(cd "$(dirname "$0")"; pwd)
 file=$(echo -e "${filepath}"|awk -F "$0" '{print $1}')
 ssr_folder="/usr/local/shadowsocksr"
@@ -112,8 +112,7 @@ Get_IP(){
 	if [[ -z "${ip}" ]]; then
 		ip=$(wget -qO- -t1 -T2 api.ip.sb/ip)
 		if [[ -z "${ip}" ]]; then
-				ip="VPS_IP"
-			fi
+			ip="VPS_IP"
 		fi
 	fi
 }
