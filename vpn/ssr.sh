@@ -5,10 +5,10 @@ export PATH
 #=================================================
 #	System Required: CentOS 6+/Debian 6+/Ubuntu 14.04+
 #	Description: Install the ShadowsocksR server
-#	Version: 1.1.5
+#	Version: 1.1.6
 #=================================================
 
-sh_ver="1.1.5"
+sh_ver="1.1.6"
 filepath=$(cd "$(dirname "$0")"; pwd)
 file=$(echo -e "${filepath}"|awk -F "$0" '{print $1}')
 ssr_folder="/usr/local/shadowsocksr"
@@ -1438,31 +1438,25 @@ View_Log(){
 Other_functions(){
 	echo && echo -e "  你要做什么？
 ————————————
-  ${Green_font_prefix}4.${Font_color_suffix} 一键封禁 BT/PT/SPAM (iptables)
-  ${Green_font_prefix}5.${Font_color_suffix} 一键解封 BT/PT/SPAM (iptables)
+  ${Green_font_prefix}1.${Font_color_suffix} 一键封禁 BT/PT/SPAM (iptables)
+  ${Green_font_prefix}2.${Font_color_suffix} 一键解封 BT/PT/SPAM (iptables)
 ————————————
-  ${Green_font_prefix}6.${Font_color_suffix} 切换 ShadowsocksR日志输出模式
+  ${Green_font_prefix}3.${Font_color_suffix} 切换 ShadowsocksR日志输出模式
   —— 说明：SSR默认只输出错误日志，此项可切换为输出详细的访问日志。
-  ${Green_font_prefix}7.${Font_color_suffix} 监控 ShadowsocksR服务端运行状态
+  ${Green_font_prefix}4.${Font_color_suffix} 监控 ShadowsocksR服务端运行状态
   —— 说明：该功能适合于SSR服务端经常进程结束，启动该功能后会每分钟检测一次，当进程不存在则自动启动SSR服务端。" && echo
 	read -e -p "(默认: 取消):" other_num
 	[[ -z "${other_num}" ]] && echo "已取消..." && exit 1
 	if [[ ${other_num} == "1" ]]; then
-		Configure_BBR
-	elif [[ ${other_num} == "2" ]]; then
-		Configure_Server_Speeder
-	elif [[ ${other_num} == "3" ]]; then
-		Configure_LotServer
-	elif [[ ${other_num} == "4" ]]; then
 		BanBTPTSPAM
-	elif [[ ${other_num} == "5" ]]; then
+	elif [[ ${other_num} == "2" ]]; then
 		UnBanBTPTSPAM
-	elif [[ ${other_num} == "6" ]]; then
+	elif [[ ${other_num} == "3" ]]; then
 		Set_config_connect_verbose_info
-	elif [[ ${other_num} == "7" ]]; then
+	elif [[ ${other_num} == "4" ]]; then
 		Set_crontab_monitor_ssr
 	else
-		echo -e "${Error} 请输入正确的数字 [1-7]" && exit 1
+		echo -e "${Error} 请输入正确的数字 [1-4]" && exit 1
 	fi
 }
 # 封禁 BT PT SPAM
@@ -1475,6 +1469,7 @@ UnBanBTPTSPAM(){
 	wget -N --no-check-certificate https://raw.githubusercontent.com/Potterli20/linux-script/master/vpn/service/ban_iptables.sh && chmod +x ban_iptables.sh && bash ban_iptables.sh unbanall
 	rm -rf ban_iptables.sh
 }
+#切换 ShadowsocksR日志输出模式
 Set_config_connect_verbose_info(){
 	SSR_installation_status
 	[[ ! -e ${jq_file} ]] && echo -e "${Error} JQ解析器 不存在，请检查 !" && exit 1
