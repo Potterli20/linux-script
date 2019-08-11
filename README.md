@@ -1,4 +1,4 @@
-# 一个人脚本
+# 范-海辛脚本收集
 ## 脚本索引
 
 * [***代理相关***](#代理相关)
@@ -7,10 +7,21 @@
   * [mtproxy_go.sh](#mtproxy_gosh)
 * [***服务器相关***](#服务器相关)
   * [MCSManager-Bash](#MCSManager-Bash)
-* [***Termux-OS系统***](#Termux-OS系统)
-  * [TermuxArch](#TermuxArch)
-  * [TermuxAlpine](#TermuxAlpine)
+* [***Termux-OS系统***](#Termux-OS)
+  * [Termux-Arch](#Termux-Arch)
+  * [Termux-Alpine](#Termux-Alpine)
   * [Nethunter-In-Termux](#Nethunter-In-Termux)
+  * [Termux-kail](#Termux-kail)
+  * [Termux-Parrot](#Termux-Parrot)
+  * [Termux-Backbox](#Termux-Backbox)
+  * [Termux-Opensuse-tumbelweed](#Termux-Opensuse-tumbelweed)
+  * [Termux-Black-Arch](#Termux-Black-Arch)
+  * [Termux-Opensuse-leap](#Termux-Opensuse-leap)
+  * [Termux-Ubuntu](#Termux-Ubuntu)
+  * [Termux-Debian](#Termux-Debian)
+  * [Termux-Fedroa](#Termux-Fedroa)
+  * [Termux-Centos](#Termux-Centos)
+  * [Termux-OS-Tools](#Termux-OS-Tools)
 
 ---
 
@@ -80,9 +91,9 @@ wget -N --no-check-certificate https://raw.githubusercontent.com/Potterli20/linu
 
 ---
 
-## Termux-OS系统
+## Termux-OS
 
-## TermuxArc
+## Termux-Arch
 
 - 脚本说明: TermuxArch安装脚本
 
@@ -93,13 +104,13 @@ wget -N --no-check-certificate https://raw.githubusercontent.com/sdrausty/Termux
 
 ---
 
-## TermuxAlpine
+## Termux-Alpine
 
 - 脚本说明: TermuxArch安装脚本
 
 #### 下载安装:
 ``` bash 
-wget -N --no-check-certificate https://raw.githubusercontent.com/Hax4us/TermuxAlpine/master/TermuxAlpine.sh && chmod +x TermuxAlpine.sh && ./TermuxAlpine.sh
+wget -N --no-check-certificate https://raw.githubusercontent.com/EXALAB/AnLinux-Resources/master/Scripts/Installer/Alpine/alpine.sh && chmod +x alpine.sh && ./alpine.sh
 ```
 
 ---
@@ -111,6 +122,131 @@ wget -N --no-check-certificate https://raw.githubusercontent.com/Hax4us/TermuxAl
 #### 下载安装:
 ``` bash 
 wget -N --no-check-certificate https://raw.githubusercontent.com/Hax4us/Nethunter-In-Termux/master/kalinethunter && chmod +x kalinethunter && ./kalinethunter
+```
+
+---
+
+## Termux-kail
+
+- 脚本说明: Termux-kail安装脚本
+
+#### 下载安装:
+``` bash 
+wget -N --no-check-certificate https://raw.githubusercontent.com/EXALAB/AnLinux-Resources/master/Scripts/Installer/Kali/kali.sh && chmod +x kali.sh && ./kali.sh
+```
+
+---
+
+## Termux-Parrot
+
+- 脚本说明: Termux-Parrot安装脚本
+
+#### 下载安装:
+``` bash 
+wget -N --no-check-certificate https://raw.githubusercontent.com/EXALAB/AnLinux-Resources/master/Scripts/Installer/Parrot/parrot.sh && chmod +x parrot.sh && ./parrot.sh
+```
+
+---
+
+## Termux-Backbox
+
+- 脚本说明: Termux-Backbox安装脚本
+
+#### 下载安装:
+``` bash 
+wget -N --no-check-certificate https://raw.githubusercontent.com/EXALAB/AnLinux-Resources/master/Scripts/Installer/Backbox/barrot.sh && chmod +x barrot.sh && ./barrot.sh
+```
+
+---
+
+## Termux-Opensuse-tumbelweed
+
+- 脚本说明: Termux-Opensuse-tumbelweed安装脚本
+
+#### 下载安装:
+``` bash 
+wget -N --no-check-certificate https://raw.githubusercontent.com/EXALAB/AnLinux-Resources/master/Scripts/Installer/openSUSE/Tumbleweed/opensuse-tumbleweed.sh && chmod +x opensuse-tumbleweed.sh && ./opensuse-tumbleweed.sh
+```
+
+---
+
+## Termux-Black-Arch
+
+- 脚本说明: Termux-Black-Arch安装脚本
+
+#### 下载安装:
+``` bash 
+curl -O https://blackarch.org/strap.sh && chmod +x strap.sh && ./strap.sh
+```
+
+---
+
+## Termux-Opensuse-leap
+
+- 脚本说明: Termux-Opensuse-leap安装脚本
+
+#### 下载安装:
+``` bash 
+wget -N --no-check-certificate https://raw.githubusercontent.com/EXALAB/AnLinux-Resources/master/Scripts/Installer/openSUSE/Leap/opensuse-leap.sh && chmod +x opensuse-leap.sh && ./opensuse-leap.sh
+```
+
+---
+
+## Termux-Ubuntu
+
+- 脚本说明: Termux-Ubuntu安装脚本
+
+#### 下载安装:
+``` bash 
+wget -N --no-check-certificate https://raw.githubusercontent.com/EXALAB/AnLinux-Resources/master/Scripts/Installer/Ubuntu/ubuntu.sh && chmod +x ubuntu.sh && ./ubuntu.sh
+```
+
+---
+
+## Termux-Debian
+
+- 脚本说明: Termux-Debian安装脚本
+
+#### 下载安装:
+``` bash 
+wget -N --no-check-certificate https://raw.githubusercontent.com/EXALAB/AnLinux-Resources/master/Scripts/Installer/Debian/debian.sh && chmod +x debian.sh && ./debian.sh
+```
+
+---
+
+## Termux-Fedroa
+
+- 脚本说明: Termux-Fedroa安装脚本
+
+#### 下载安装:
+``` bash 
+wget -N --no-check-certificate https://raw.githubusercontent.com/EXALAB/AnLinux-Resources/master/Scripts/Installer/Fedora/fedora.sh && chmod +x fedora.sh && ./fedora.sh
+```
+
+---
+
+## Termux-Centos
+
+- 脚本说明: Termux-Debian安装脚本
+
+#### 下载安装:
+``` bash 
+wget -N --no-check-certificate https://raw.githubusercontent.com/EXALAB/AnLinux-Resources/master/Scripts/Installer/CentOS/centos.sh && chmod +x centos.sh && ./centos.sh
+```
+
+---
+
+## Termux-OS-Tools
+
+- 脚本说明: Termux-OS-Tools安装脚本
+
+#### 脚本特点:
+它是一个安装各种操作系统的非常简单的工具。
+在termux中使用它
+
+#### 下载安装:
+``` bash 
+wget -N --no-check-certificate https://raw.githubusercontent.com/Sanif007/tool-OS/master/os.py && apt install python toilet -y  &&  python os.py
 ```
 
 ---
