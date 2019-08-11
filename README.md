@@ -82,7 +82,7 @@ wget -N --no-check-certificate https://raw.githubusercontent.com/Potterli20/linu
 
 ## Termux-OS系统
 
-## TermuxArch [github:sdrausty](https://github.com/sdrausty/TermuxArch)
+## TermuxArc
 
 - 脚本说明: TermuxArch安装脚本
 
@@ -93,7 +93,7 @@ wget -N --no-check-certificate https://raw.githubusercontent.com/sdrausty/Termux
 
 ---
 
-## TermuxAlpine [gihub:Hax4us/TermuxAlpine](https://github.com/Hax4us/TermuxAlpine)
+## TermuxAlpine
 
 - 脚本说明: TermuxArch安装脚本
 
@@ -104,7 +104,7 @@ wget -N --no-check-certificate https://raw.githubusercontent.com/Hax4us/TermuxAl
 
 ---
 
-## Nethunter-In-Termux [gihub:Hax4us/Nethunter-In-Termux](https://github.com/Hax4us/Nethunter-In-Termux)
+## Nethunter-In-Termux
 
 - 脚本说明: Nethunter-In-Termux安装脚本
 
