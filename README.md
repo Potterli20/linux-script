@@ -15,7 +15,6 @@
   * [Termux-Parrot](#Termux-Parrot)
   * [Termux-Backbox](#Termux-Backbox)
   * [Termux-Opensuse-tumbelweed](#Termux-Opensuse-tumbelweed)
-  * [Termux-Black-Arch](#Termux-Black-Arch)
   * [Termux-Opensuse-leap](#Termux-Opensuse-leap)
   * [Termux-Ubuntu](#Termux-Ubuntu)
   * [Termux-Debian](#Termux-Debian)
@@ -166,17 +165,6 @@ wget -N --no-check-certificate https://raw.githubusercontent.com/EXALAB/AnLinux-
 #### 下载安装:
 ``` bash 
 wget -N --no-check-certificate https://raw.githubusercontent.com/EXALAB/AnLinux-Resources/master/Scripts/Installer/openSUSE/Tumbleweed/opensuse-tumbleweed.sh && chmod +x opensuse-tumbleweed.sh && ./opensuse-tumbleweed.sh
-```
-
----
-
-## Termux-Black-Arch
-
-- 脚本说明: Termux-Black-Arch安装脚本
-
-#### 下载安装:
-``` bash 
-curl -O https://blackarch.org/strap.sh && chmod +x strap.sh && ./strap.sh
 ```
 
 ---
