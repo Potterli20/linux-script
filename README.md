@@ -106,7 +106,7 @@ wget -N --no-check-certificate https://raw.githubusercontent.com/sdrausty/Termux
 
 ## Termux-Alpine
 
-- 脚本说明: TermuxArch安装脚本
+- 脚本说明: TermuxAlpine安装脚本
 
 #### 下载安装:
 ``` bash 
