@@ -68,7 +68,7 @@ wget -N --no-check-certificate https://raw.githubusercontent.com/Potterli20/linu
 
 ## 服务器相关
 
-##MCSManager-Bash
+## MCSManager-Bash
 
 - 脚本说明: MC服务器 一键安装管理脚本
 - 系统支持: CentOS 6/7,Debian 8/9,Ubuntu 16+
@@ -80,7 +80,7 @@ wget -N --no-check-certificate https://raw.githubusercontent.com/Potterli20/linu
 
 ---
 
-##Termux-OS系统
+## Termux-OS系统
 
 ##TermuxArch [github:sdrausty](https://github.com/sdrausty/TermuxArch)
 
@@ -93,7 +93,7 @@ wget -N --no-check-certificate https://raw.githubusercontent.com/sdrausty/Termux
 
 ---
 
-##TermuxAlpine [gihub:Hax4us](https://github.com/Hax4us/TermuxAlpine)
+## TermuxAlpine [gihub:Hax4us/TermuxAlpine](https://github.com/Hax4us/TermuxAlpine)
 
 - 脚本说明: TermuxArch安装脚本
 
@@ -104,7 +104,7 @@ wget -N --no-check-certificate https://raw.githubusercontent.com/Hax4us/TermuxAl
 
 ---
 
-##Nethunter-In-Termux [gihub:Hax4us](https://github.com/Hax4us/Nethunter-In-Termux)
+## Nethunter-In-Termux [gihub:Hax4us/Nethunter-In-Termux](https://github.com/Hax4us/Nethunter-In-Termux)
 
 - 脚本说明: TermuxArch安装脚本
 
