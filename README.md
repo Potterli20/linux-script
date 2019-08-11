@@ -154,7 +154,7 @@ wget -N --no-check-certificate https://raw.githubusercontent.com/EXALAB/AnLinux-
 
 #### 下载安装:
 ``` bash 
-wget -N --no-check-certificate https://raw.githubusercontent.com/EXALAB/AnLinux-Resources/master/Scripts/Installer/Backbox/backbox.sh && chmod +x barrot.sh && ./barrot.sh
+wget -N --no-check-certificate https://raw.githubusercontent.com/EXALAB/AnLinux-Resources/master/Scripts/Installer/Backbox/backbox.sh && chmod +x backbox.sh && ./backbox.sh
 ```
 
 ---
