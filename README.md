@@ -7,7 +7,7 @@
   * [mtproxy_go.sh](#mtproxy_gosh)
 * [***服务器相关***](#服务器相关)
   * [MCSManager-Bash](#MCSManager-Bash)
-* [***Termux-OS系统***](#系统)
+* [***Termux-OS系统***](#Termux-OS系统)
   * [TermuxArch](#TermuxArch)
   * [TermuxAlpine](#TermuxAlpine)
   * [Nethunter-In-Termux](#Nethunter-In-Termux)
