@@ -15,6 +15,7 @@ do
   fi
 done
 
+
 echo "开始更改搜索引擎"
 chattr -i /data/data/com.android.browser/files/data/searchengine/searchengine-zh-rCN-f198d1a8f090029f8154d90f3f5398ec/searchengine.json
 chmod 0777 /data/data/com.android.browser/files/data/searchengine/searchengine-zh-rCN-f198d1a8f090029f8154d90f3f5398ec/searchengine.json
@@ -128,29 +129,11 @@ cat>/data/data/com.android.browser/files/data/searchengine/searchengine-zh-rCN-f
     "show_suggest_app":0
     }
   },
-  "7":{
-    "title_zh_CN":"必应",
-    "title_zh_TW":"必应",
-    "title_en_US":"bing",
-    "label":"bing",
-    "keyword":"bing.com",
-    "favicon_uri":"",
-    "search_uri":"https:\/\/bing.com\/?q={searchTerms}",
-    "encoding":"UTF-8",
-    "suggest_uri":"http:\/\/suggestion.baidu.com\/su?p=3&wd={searchTerms}",
-    "extra":"v6",
-    "show_suggest_app":0,
-    "ic_search_engine":"http:\/\/t2.market.mi-img.com\/download\/Browser\/0567aa49cbabd453834a3d1dd46b7c54454ec55ef",
-    "ic_search_logo":"",
-    "miui_search_logo":"http:\/\/file.market.xiaomi.com\/download\/Browser\/1305f832-e9e5-4205-8964-c794b6bbbb3c",
-    "ic_search_engine_v7":"https:\/\/cdn.leakzero.com\/mijisou\/themes\/entropage\/img\/favicon.png?staticVersion=1559562262",
-    "ic_search_engine_white":"http:\/\/f4.market.mi-img.com\/download\/Browser\/01828647800094c1a0762e2a32d4d8e0f7b74dbbc"   
-  },
 "default_search_engine":{
   "name":"1",
   "isRecommended":true
   },
-"search_engines":["7","1","2","4","3","5","6"]
+"search_engines":["5","1","2","4","3","6"]
 }
 EOF
 
