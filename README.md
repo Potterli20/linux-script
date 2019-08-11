@@ -92,7 +92,7 @@ wget -N --no-check-certificate https://raw.githubusercontent.com/Potterli20/linu
 
 ## Termux-OS
 
-- 先更新软件pkg ipdate && pkg upgrade &&pkg install apt -y && apt install wget openssl-tool proot -y ，不然会出现错误
+- 先更新软件pkg update && pkg upgrade &&pkg install apt -y && apt install wget openssl-tool proot -y ，不然会出现错误
 
 ## Termux-Arch
 
