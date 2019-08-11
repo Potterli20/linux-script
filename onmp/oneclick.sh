@@ -27,7 +27,7 @@ Install()
 	mkdir -p /opt/onmp
 
     # 获取onmp脚本
-    curl -kfsSL https://raw.githubusercontent.com/https://github.com/Potterli20/linux-script/master/onmp.sh > /opt/onmp/onmp.sh
+    curl -kfsSL https://raw.githubusercontent.com/Potterli20/linux-script/master/onmp/onmp.sh > /opt/onmp/onmp.sh
     chmod +x /opt/onmp/onmp.sh
 
     # 获取php探针文件
@@ -39,8 +39,7 @@ Install()
 Updata()
 {
 	rm -rf /opt/onmp/onmp.sh
-	curl -kfsSL https://raw.githubusercontent.com/https://github.com/Potterli20/linux-script/master/onmp.sh > /opt/onmp/onmp.sh
-	# curl -kfsSL http://192.168.4.126:4000/onmp.sh > /opt/onmp/onmp.sh
+	curl -kfsSL https://raw.githubusercontent.com/Potterli20/linux-script/master/onmp/onmp.sh > /opt/onmp/onmp.sh
 	chmod +x /opt/onmp/onmp.sh
 	/opt/onmp/onmp.sh renewsh > /dev/null 2>&1
 	echo "升级完成"
