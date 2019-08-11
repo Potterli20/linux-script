@@ -74,7 +74,8 @@ wget -N --no-check-certificate https://raw.githubusercontent.com/Potterli20/linu
 - 系统支持: CentOS 6/7,Debian 8/9,Ubuntu 16+
 
 #### 下载安装:
-``` bash wget -N --no-check-certificate https://raw.githubusercontent.com/Potterli20/linux-script/master/MCSManager-Bash/install.sh && chmod +x install.sh && ./install.sh
+``` bash 
+wget -N --no-check-certificate https://raw.githubusercontent.com/Potterli20/linux-script/master/MCSManager-Bash/install.sh && chmod +x install.sh && ./install.sh
 ```
 
 ---
