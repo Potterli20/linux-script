@@ -100,7 +100,7 @@ wget -N --no-check-certificate https://raw.githubusercontent.com/Potterli20/linu
 
 #### 下载安装:
 ``` bash 
-wget -N --no-check-certificate https://raw.githubusercontent.com/sdrausty/TermuxArch/master/setupTermuxArch.sh && chmod +x setupTermuxArch.sh && ./setupTermuxArch.sh
+wget -N --no-check-certificate  https://raw.githubusercontent.com/EXALAB/AnLinux-Resources/master/Scripts/Installer/Arch/armhf/arch.sh && chmod +x arch.sh && ./arch.sh
 ```
 
 ---
