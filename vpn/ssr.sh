@@ -5,10 +5,10 @@ export PATH
 #=================================================
 #	System Required: CentOS 6+/Debian 6+/Ubuntu 14.04+
 #	Description: Install the ShadowsocksR server
-#	Version: 1.2.0
+#	Version: 1.2.3
 #=================================================
 
-sh_ver="1.2.0"
+sh_ver="1.2.3"
 filepath=$(cd "$(dirname "$0")"; pwd)
 file=$(echo -e "${filepath}"|awk -F "$0" '{print $1}')
 ssr_folder="/usr/local/shadowsocksr"
@@ -406,8 +406,12 @@ Set_config_method(){
  ${Green_font_prefix}14.${Font_color_suffix} salsa20
  ${Green_font_prefix}15.${Font_color_suffix} chacha20
  ${Green_font_prefix}16.${Font_color_suffix} chacha20-ietf
+ ${Green_font_prefix}17.${Font_color_suffix} chacha20-ietf-poly1305
+ ${Green_font_prefix}18.${Font_color_suffix} xchacha20-ietf-poly1305
+ ${Green_font_prefix}19.${Font_color_suffix} xchacha20
+ ${Green_font_prefix}20.${Font_color_suffix} xsalsa20
  ${Tip} salsa20/chacha20-*系列加密方式，需要额外安装依赖 libsodium ，否则会无法启动ShadowsocksR !" && echo
-	read -e -p "(默认: 5. aes-128-ctr):" ssr_method
+	read -e -p "(默认: 18. xchacha20-ietf-poly1305):" ssr_method
 	[[ -z "${ssr_method}" ]] && ssr_method="5"
 	if [[ ${ssr_method} == "1" ]]; then
 		ssr_method="none"
@@ -441,8 +445,16 @@ Set_config_method(){
 		ssr_method="chacha20"
 	elif [[ ${ssr_method} == "16" ]]; then
 		ssr_method="chacha20-ietf"
+	elif [[ ${ssr_method} == "17" ]]; then
+		ssr_method="chacha20-ietf-poly1305"
+	elif [[ ${ssr_method} == "18" ]]; then
+		ssr_method="xchacha20-ietf-poly1305"
+	elif [[ ${ssr_method} == "19" ]]; then
+		ssr_method="xchacha20"
+	elif [[ ${ssr_method} == "20" ]]; then
+		ssr_method="xsalsa20"
 	else
-		ssr_method="aes-128-ctr"
+		ssr_method="xchacha20-ietf-poly1305"
 	fi
 	echo && echo ${Separator_1} && echo -e "	加密 : ${Green_font_prefix}${ssr_method}${Font_color_suffix}" && echo ${Separator_1} && echo
 }
@@ -455,8 +467,12 @@ Set_config_protocol(){
  ${Green_font_prefix}4.${Font_color_suffix} auth_aes128_sha1
  ${Green_font_prefix}5.${Font_color_suffix} auth_chain_a
  ${Green_font_prefix}6.${Font_color_suffix} auth_chain_b
+ ${Green_font_prefix}7.${Font_color_suffix} auth_chain_c
+ ${Green_font_prefix}8.${Font_color_suffix} auth_chain_d
+ ${Green_font_prefix}9.${Font_color_suffix} auth_chain_e
+ ${Green_font_prefix}10.${Font_color_suffix} auth_chain_f
  ${Tip} 如果使用 auth_chain_* 系列协议，建议加密方式选择 none (该系列协议自带 RC4 加密)，混淆随意" && echo
-	read -e -p "(默认: 3. auth_aes128_md5):" ssr_protocol
+	read -e -p "(默认: 2. auth_sha1_v4):" ssr_protocol
 	[[ -z "${ssr_protocol}" ]] && ssr_protocol="3"
 	if [[ ${ssr_protocol} == "1" ]]; then
 		ssr_protocol="origin"
@@ -470,8 +486,16 @@ Set_config_protocol(){
 		ssr_protocol="auth_chain_a"
 	elif [[ ${ssr_protocol} == "6" ]]; then
 		ssr_protocol="auth_chain_b"
+	elif [[ ${ssr_protocol} == "7" ]]; then
+		ssr_protocol="auth_chain_c"
+	elif [[ ${ssr_protocol} == "8" ]]; then
+		ssr_protocol="auth_chain_d"
+	elif [[ ${ssr_protocol} == "9" ]]; then
+		ssr_protocol="auth_chain_e"
+	elif [[ ${ssr_protocol} == "10" ]]; then
+		ssr_protocol="auth_chain_f"
 	else
-		ssr_protocol="auth_aes128_md5"
+		ssr_protocol="auth_sha1_v4"
 	fi
 	echo && echo ${Separator_1} && echo -e "	协议 : ${Green_font_prefix}${ssr_protocol}${Font_color_suffix}" && echo ${Separator_1} && echo
 	if [[ ${ssr_protocol} != "origin" ]]; then
@@ -491,6 +515,7 @@ Set_config_obfs(){
  ${Green_font_prefix}3.${Font_color_suffix} http_post
  ${Green_font_prefix}4.${Font_color_suffix} random_head
  ${Green_font_prefix}5.${Font_color_suffix} tls1.2_ticket_auth
+ ${Green_font_prefix}6.${Font_color_suffix} tls1.2_ticket_fastauth
  ${Tip} 如果使用 ShadowsocksR 代理游戏，建议选择 混淆兼容原版或 plain 混淆，然后客户端选择 plain，否则会增加延迟 !
  另外, 如果你选择了 tls1.2_ticket_auth，那么客户端可以选择 tls1.2_ticket_fastauth，这样即能伪装又不会增加延迟 !
  如果你是在日本、美国等热门地区搭建，那么选择 plain 混淆可能被墙几率更低 !" && echo
@@ -506,6 +531,8 @@ Set_config_obfs(){
 		ssr_obfs="random_head"
 	elif [[ ${ssr_obfs} == "5" ]]; then
 		ssr_obfs="tls1.2_ticket_auth"
+	elif [[ ${ssr_obfs} == "6" ]]; then
+		ssr_obfs="tls1.2_ticket_fastauth"
 	else
 		ssr_obfs="plain"
 	fi
